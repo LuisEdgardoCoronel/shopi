@@ -1,5 +1,8 @@
+import Layout from "../../components/layout";
+
 export default function MyOrder():JSX.Element {
   return (
-    <div>MyOrder</div>
+    <Layout>
+    </Layout>
   )
 }

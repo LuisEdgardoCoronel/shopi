@@ -1,5 +1,8 @@
+import Layout from "../../components/layout";
+
 export default function NotFound():JSX.Element {
   return (
-    <div>NotFound</div>
+    <Layout>
+    </Layout>
   )
 }

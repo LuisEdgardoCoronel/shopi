@@ -1,5 +1,8 @@
+import Layout from "../../components/layout";
+
 export default function SignIn():JSX.Element {
   return (
-    <div>SignIn</div>
+    <Layout>
+    </Layout>
   )
 }
