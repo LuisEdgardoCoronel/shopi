@@ -1,4 +1,5 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom';
+import { ShoppingCartProvider } from '../../context';
 
 import Home from '../Home'
 import MyAccount from '../MyAccount';
@@ -26,10 +27,12 @@ function App():JSX.Element {
   
   return (
     <>
+    <ShoppingCartProvider>
       <BrowserRouter>
         <AppRoutes/>
         <Navbar/>
       </BrowserRouter>
+    </ShoppingCartProvider>
     </>
   )
 }
