@@ -7,6 +7,7 @@ import MyOrders from '../MyOrders';
 import NotFound from '../NotFound';
 import SignIn from '../SignIn';
 import './App.css'
+import Navbar from '../../components/Navbar';
 
 
 const AppRoutes: React.FC = ()=>{
@@ -27,6 +28,7 @@ function App():JSX.Element {
     <>
       <BrowserRouter>
         <AppRoutes/>
+        <Navbar/>
       </BrowserRouter>
     </>
   )
