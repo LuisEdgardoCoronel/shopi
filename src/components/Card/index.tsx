@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context";
-
+import { PlusIcon } from "@heroicons/react/24/solid";
 import { Cards} from "../../interface";
 
 
@@ -23,10 +23,10 @@ const Card:React.FC<Cards> = ({price, title, image, category}) => {
           className="object-cover w-full h-full rounded-lg"
         />
         <div 
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-2 text-lg"
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-0.5 text-lg"
           onClick={()=> setCount(count + 1)}
         >
-          +
+          <PlusIcon className=" w-full text-black"/>
         </div>
       </figure>
       <p className="flex justify-between mx-2">

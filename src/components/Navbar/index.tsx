@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { ShoppingCartContext } from '../../context'
 import { useContext } from 'react'
-
+import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 
 export default function Navbar():JSX.Element {
@@ -110,7 +110,7 @@ export default function Navbar():JSX.Element {
           </NavLink>
         </li>
         <li>
-          🛒{count}
+          <ShoppingCartIcon className='w-5 inline'/>{count}
         </li>
       </ul>
     </nav>
