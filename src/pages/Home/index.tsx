@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react"
-import Layout from "../../components/layout"
-import Card from "../../components/Card"
+import { useState, useEffect } from "react";
+import Layout from "../../components/layout";
+import Card from "../../components/Card";
+import { ProductDetail } from "../../components/ProductDetail";
 
 export default function Home():JSX.Element {
 
@@ -28,7 +29,7 @@ export default function Home():JSX.Element {
           })
         }
       </div>
-      
+      <ProductDetail/>
     </Layout>
   )
 }
