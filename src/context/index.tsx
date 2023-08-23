@@ -27,6 +27,21 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
     setProductToShow({price, title, image, category,description})
   }
 
+  //shopping cart . add products
+  const [cartProduct, setCartProduct] = useState<Partial<Cards>[]>([])
+
+  const addProductsToCart = (event: React.MouseEvent<HTMLDivElement>, price:number, title:string, image:string, category:string,description:string) =>{
+    event.stopPropagation()
+    setCount(count + 1)
+    OpenCheckoutSideMenu()
+    setCartProduct([...cartProduct, {price, title, image, category,description}])
+  }
+
+
+    // product detail. open/close
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState<boolean>(false)
+    const OpenCheckoutSideMenu:()=>void = () => setIsCheckoutSideMenuOpen(true);
+    const CloseCheckoutSideMenu:()=>void = () => setIsCheckoutSideMenuOpen(false);
 
 
   return(
@@ -39,6 +54,13 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
       productToShow,
       setProductToShow,
       showProduct,
+      cartProduct, 
+      setCartProduct,
+      addProductsToCart,
+      isCheckoutSideMenuOpen, 
+      setIsCheckoutSideMenuOpen,
+      OpenCheckoutSideMenu,
+      CloseCheckoutSideMenu
     }}>
       {children}
     </ShoppingCartContext.Provider>
