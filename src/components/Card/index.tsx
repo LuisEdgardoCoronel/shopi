@@ -28,7 +28,7 @@ const Card:React.FC<Cards> = ({price, title, image, category, description}) => {
         />
         <div 
           className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-0.5 text-lg"
-          onClick={()=> context.setCount(context.count + 1)}
+          onClick={(event)=>context.addProductsToCart(event, price, title, image, category,description)}
         >
           <PlusIcon className=" w-full text-black"/>
         </div>
