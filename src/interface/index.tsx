@@ -20,7 +20,14 @@ export interface ShoppingCartContextType {
   toggleProductDetail:()=>void;
   isProductDetailOpen:boolean
   setIsProductDetailOpen:React.Dispatch<React.SetStateAction<boolean>>;
-  productToShow:Partial<Cards>,
-  setProductToShow:React.Dispatch<React.SetStateAction<Partial<Cards>>>
-  showProduct:(price: number, title: string, image: string, category: string, description: string) => void
+  productToShow:Partial<Cards>;
+  setProductToShow:React.Dispatch<React.SetStateAction<Partial<Cards>>>;
+  showProduct:(price: number, title: string, image: string, category: string, description: string) => void;
+  cartProduct:Partial<Cards>[];
+  setCartProduct:React.Dispatch<React.SetStateAction<Partial<Cards>[]>>;
+  addProductsToCart: (event: React.MouseEvent<HTMLDivElement>,price: number, title: string, image: string, category: string, description: string) => void
+  OpenCheckoutSideMenu:()=>void;
+  CloseCheckoutSideMenu:()=>void;
+  isCheckoutSideMenuOpen:boolean
+  setIsCheckoutSideMenuOpen:React.Dispatch<React.SetStateAction<boolean>>;
 }
