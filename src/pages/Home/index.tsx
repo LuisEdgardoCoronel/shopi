@@ -24,7 +24,8 @@ export default function Home():JSX.Element {
                     price={item.price}
                     title={item.title}
                     image={item.images[0]}
-                    category={item.category.name}          
+                    category={item.category.name}     
+                    description={item.description}     
                   />
           })
         }
