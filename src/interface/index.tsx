@@ -10,11 +10,16 @@ export interface Cards {
   price:number;
   title:string;
   image:string;
-  category:string
+  category:string;
+  description: string;
 }
 
 export interface ShoppingCartContextType {
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
+  toggleProductDetail:()=>void;
+  isProductDetailOpen:boolean
+  setIsProductDetailOpen:React.Dispatch<React.SetStateAction<boolean>>;
+  productToShow:Partial<Cards>,
+  setProductToShow:React.Dispatch<React.SetStateAction<Partial<Cards>>>
 }
-
