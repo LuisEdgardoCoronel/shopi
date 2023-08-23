@@ -9,6 +9,7 @@ import NotFound from '../NotFound';
 import SignIn from '../SignIn';
 import './App.css'
 import Navbar from '../../components/Navbar';
+import { CheckoutSideMenu } from '../../components/CheckoutSideMenu';
 
 
 const AppRoutes: React.FC = ()=>{
@@ -31,6 +32,7 @@ function App():JSX.Element {
       <BrowserRouter>
         <AppRoutes/>
         <Navbar/>
+        <CheckoutSideMenu/>
       </BrowserRouter>
     </ShoppingCartProvider>
     </>
