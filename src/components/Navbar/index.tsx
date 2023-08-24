@@ -6,8 +6,7 @@ import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 export default function Navbar():JSX.Element {
 
-  const context = useContext(ShoppingCartContext );
-  const { count} = context as { count: number};
+  const context = useContext(ShoppingCartContext ) as ShoppingCartContextType
   
   const activeStyle = 'underline underline-offset-4'
 
@@ -109,8 +108,8 @@ export default function Navbar():JSX.Element {
             Sign In
           </NavLink>
         </li>
-        <li>
-          <ShoppingCartIcon className='w-5 inline'/>{count}
+        <li onClick={context.OpenCheckoutSideMenu} className=' cursor-pointer'>
+          <ShoppingCartIcon className='w-5 inline'/>{context.totalCart}
         </li>
       </ul>
     </nav>
