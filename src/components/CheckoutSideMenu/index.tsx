@@ -7,6 +7,8 @@ import { ShoppingCartContextType } from "../../interface"
 export const CheckoutSideMenu=():JSX.Element => {
 
   const context = useContext(ShoppingCartContext ) as ShoppingCartContextType
+  
+  
 
 
 
@@ -14,9 +16,9 @@ export const CheckoutSideMenu=():JSX.Element => {
 
   return (
     <aside 
-    className={`${context.isCheckoutSideMenuOpen?'flex' : 'hidden'} flex-col fixed right-0 bg-white border border-black rounded-lg w-p.d h-p.d top-p.d`}
+    className={`${context.isCheckoutSideMenuOpen?'flex' : 'hidden'} flex-col fixed box-border right-0 bg-white border border-black rounded-lg w-p.d max-h-p.d top-p.d`}
     >
-      <div className="flex justify-between items-center p-6">
+      <div className="flex justify-between items-center p-6 bg-gray-100 rounded-t-lg">
         <h2 className="font-medium text-lg">My order</h2>
         <div >
           <XCircleIcon 
@@ -25,7 +27,8 @@ export const CheckoutSideMenu=():JSX.Element => {
           />
         </div>
       </div>
-      <div className=" px-6 ">
+
+      <div className=" overflow-y-scroll">
       {
         context.cartProduct.map((product)=>{
           return <OrderCard
@@ -33,9 +36,21 @@ export const CheckoutSideMenu=():JSX.Element => {
           title={product.title}
           image={product.image}
           price={product.price}
+          id={product.id}
           />
         })
       }
+      </div>
+
+      <div className=" px-6 py-3 w-full flex justify-between bg-gray-100 rounded-b-lg">
+        <p className=" inline-block">
+          <span className=" text-sm">Productos: </span>
+          <span className=" font-medium text-md">{context.totalCart}</span>
+        </p>
+        <p className=" inline-block">
+          <span className=" text-sm">Total: </span>
+          <span className=" font-medium text-md">${context.totalPrice}</span>
+        </p>
       </div>
     </aside>
   )
