@@ -1,16 +1,40 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, CheckIcon } from "@heroicons/react/24/solid";
 import { Cards, ShoppingCartContextType} from "../../interface";
 
 
 
-
-const Card:React.FC<Cards> = ({price, title, image, category, description}) => {
+const Card:React.FC<Cards> = ({price, title, image, category, description, id}) => {
 
   const context = useContext(ShoppingCartContext )as ShoppingCartContextType
 
-  
+  const renderIcon =(key:number)=>{
+    const isInCart = context.cartProduct.filter(product => product.id === key).length > 0
+    if (isInCart) {
+      return(
+        <div 
+          className="absolute top-0 right-0 flex justify-center items-center bg-green-400 w-6 h-6 rounded-full m-2 p-0.5 text-lg"
+        >
+          <CheckIcon className=" w-full text-white "/>
+        </div>
+      )
+    } else {
+      return(
+        <div 
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-0.5 text-lg"
+          onClick={(event)=>context.addProductsToCart(event,key, price, title, image, category,description)}
+        >
+          <PlusIcon className=" w-full text-green-700"/>
+        </div>
+      )
+    }
+  }
+
+
+
+
+
 
   return (
     <div 
@@ -26,12 +50,7 @@ const Card:React.FC<Cards> = ({price, title, image, category, description}) => {
           alt={title}       
           className="object-cover w-full h-full rounded-lg"
         />
-        <div 
-          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-0.5 text-lg"
-          onClick={(event)=>context.addProductsToCart(event, price, title, image, category,description)}
-        >
-          <PlusIcon className=" w-full text-black"/>
-        </div>
+        {renderIcon(id)}
       </figure>
       <p className="flex justify-between mx-2">
         <span className="text-sm">{title}</span>
