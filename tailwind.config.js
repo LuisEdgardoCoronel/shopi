@@ -9,12 +9,12 @@ export default {
       width:{
         'p.d':'360px'
       },
-      height:{
+      maxHeight:{
         'p.d':'calc(100vh - 68px)'
       },
       inset:{
         'p.d':'62.5px'
-      }
+      },
     },
   },
   plugins: [],
