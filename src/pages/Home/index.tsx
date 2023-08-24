@@ -21,6 +21,7 @@ export default function Home():JSX.Element {
           items?.map((item) =>{
             return <Card 
                     key={item.id} 
+                    id={item.id}
                     price={item.price}
                     title={item.title}
                     image={item.images[0]}
