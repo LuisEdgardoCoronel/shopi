@@ -1,14 +1,9 @@
 import React, {createContext, useState} from 'react'
-import { Cards, PropsType, ShoppingCartContextType } from '../interface'
+import { Cards, Order, PropsType, ShoppingCartContextType } from '../interface'
 
 export const ShoppingCartContext = createContext<ShoppingCartContextType|undefined>(undefined)
 
 export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
-  //incrementar shopping cart
-  const [count, setCount] = useState<number>(0)//TODO:analizar si es necesario
-
-
-
 
   // product detail. open/close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState<boolean>(false)
@@ -44,6 +39,7 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
 
   //shopping cart . add products
   const [cartProduct, setCartProduct] = useState<Partial<Cards>[]>([])
+  const [count, setCount] = useState<number>(0)//TODO:analizar si es necesario
 
   const addProductsToCart = (event: React.MouseEvent<HTMLDivElement>,id:number, price:number, title:string, image:string, category:string,description:string) =>{
     event.stopPropagation()
@@ -57,10 +53,26 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
     setCartProduct(filteredProducts)
   }
 
-  const totalPrice = cartProduct.reduce((x,product)=> x + product.price,0)
+  const totalPrice = parseInt(cartProduct.reduce((x,product)=> x + product.price,0).toFixed(2))
   const totalCart = cartProduct.length
 
-  
+  const [order, setOrder]=useState<Partial<Order>[]>([])
+
+  const handleCheckout = () =>{
+    const orderToAdd ={
+      date:'01.02.23',
+      products:cartProduct,
+      totalProducts:count,
+      totalPriceCart: totalPrice
+    }
+    setOrder([...order, orderToAdd])
+    setCount(0)
+    setCartProduct([]);
+    CloseCheckoutSideMenu()
+  }
+
+
+
 
 
 
@@ -97,7 +109,9 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
       handleDelete,
       totalPrice,
       totalCart,
-
+      order,
+      setOrder,
+      handleCheckout
     }}>
       {children}
     </ShoppingCartContext.Provider>
