@@ -6,6 +6,9 @@ export interface PropsType {
 }
 
 
+export interface OrderCards extends Partial<Cards> {
+  handleDelete:boolean;
+}
 
 
 
@@ -23,6 +26,32 @@ export interface Cards {
 
 
 
+
+
+export interface Order {
+  date: string;
+  products: Partial<Cards>[];
+  totalProducts: number;
+  totalPriceCart: number;
+}
+
+
+
+
+
+
+export interface Product {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: {
+    id: number;
+    name: string| undefined ;
+    image: string;
+  };
+  images: string[];
+}
 
 
 
@@ -46,6 +75,9 @@ export interface ShoppingCartContextType {
   isCheckoutSideMenuOpen:boolean;
   setIsCheckoutSideMenuOpen:React.Dispatch<React.SetStateAction<boolean>>;
   handleDelete: (id: number) => void;
-  totalPrice:number
+  totalPrice:string
   totalCart:number
+  order:Partial<Order>[];
+  setOrder:React.Dispatch<React.SetStateAction<Partial<Order>[]>>;
+  handleCheckout: () => void
 }
