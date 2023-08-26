@@ -3,6 +3,7 @@ import { XCircleIcon } from "@heroicons/react/20/solid"
 import { ShoppingCartContext } from "../../context"
 import { useContext } from "react"
 import { ShoppingCartContextType } from "../../interface"
+import { Link } from "react-router-dom"
 
 export const CheckoutSideMenu=():JSX.Element => {
 
@@ -37,20 +38,26 @@ export const CheckoutSideMenu=():JSX.Element => {
           image={product.image}
           price={product.price}
           id={product.id}
+          handleDelete={true}
           />
         })
       }
       </div>
 
-      <div className=" px-6 py-3 w-full flex justify-between bg-gray-100 rounded-b-lg">
-        <p className=" inline-block">
-          <span className=" text-sm">Productos: </span>
-          <span className=" font-medium text-md">{context.totalCart}</span>
-        </p>
-        <p className=" inline-block">
-          <span className=" text-sm">Total: </span>
-          <span className=" font-medium text-md">${context.totalPrice}</span>
-        </p>
+      <div className=" px-6 py-3 w-full  bg-gray-100 rounded-b-lg">
+        <div className=" flex justify-between">
+          <p className=" inline-block">
+            <span className=" text-sm">Productos: </span>
+            <span className=" font-medium text-md">{context.totalCart}</span>
+          </p>
+          <p className=" inline-block">
+            <span className=" text-sm">Total: </span>
+            <span className=" font-medium text-md">${context.totalPrice}</span>
+          </p>
+        </div>
+        <Link to='/my-orders/last'>
+          <button className=" w-full bg-black py-3 text-white rounded-lg" onClick={()=>context.handleCheckout()}>Checkout</button>
+        </Link>
       </div>
     </aside>
   )
