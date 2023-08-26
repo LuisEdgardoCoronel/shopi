@@ -1,10 +1,10 @@
 import { XCircleIcon } from "@heroicons/react/24/solid"
-import { Cards, ShoppingCartContextType } from "../../interface"
+import { ShoppingCartContextType,OrderCards } from "../../interface"
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../context"
 
 
-export const OrderCard:React.FC<Partial<Cards>>  = ({id,price, title, image}) => {
+export const OrderCard:React.FC<OrderCards>  = ({id,price, title, image, handleDelete}) => {
 
   const context = useContext(ShoppingCartContext ) as ShoppingCartContextType
 
@@ -19,10 +19,13 @@ export const OrderCard:React.FC<Partial<Cards>>  = ({id,price, title, image}) =>
       </div>
       <div className="flex items-center gap-2 ">
         <p className="text-lg font-medium">$ {price}</p>
+        {
+          handleDelete &&
         <XCircleIcon 
           className=" w-7 cursor-pointer text-red-600 "
           onClick={()=>context.handleDelete(id)}
           />
+        }
       </div>
     </div>
   )
