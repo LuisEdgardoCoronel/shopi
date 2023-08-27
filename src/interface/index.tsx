@@ -47,7 +47,7 @@ export interface Product {
   description: string;
   category: {
     id: number;
-    name: string| undefined ;
+    name: string ;
     image: string;
   };
   images: string[];
@@ -59,10 +59,8 @@ export interface Product {
 
 
 export interface ShoppingCartContextType {
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
   toggleProductDetail:()=>void;
-  isProductDetailOpen:boolean
+  isProductDetailOpen:boolean;
   setIsProductDetailOpen:React.Dispatch<React.SetStateAction<boolean>>;
   productToShow:Partial<Cards>;
   setProductToShow:React.Dispatch<React.SetStateAction<Partial<Cards>>>;
@@ -75,9 +73,19 @@ export interface ShoppingCartContextType {
   isCheckoutSideMenuOpen:boolean;
   setIsCheckoutSideMenuOpen:React.Dispatch<React.SetStateAction<boolean>>;
   handleDelete: (id: number) => void;
-  totalPrice:string
-  totalCart:number
+  totalPrice:number;
+  totalCart:number;
   order:Partial<Order>[];
   setOrder:React.Dispatch<React.SetStateAction<Partial<Order>[]>>;
-  handleCheckout: () => void
+  handleCheckout: () => void;
+  items:Product[];
+  setItems:React.Dispatch<React.SetStateAction<Product[]>>;
+  searchTitleItems:Product[]|string|null;
+  setSearchTitleItems:React.Dispatch<React.SetStateAction<Product[]|string|null>>;
+  filteredItemsByTitle: (items: Product[], searchTitleItems: string) => Product[];
+  filteredItems:Product[];
+  searchItemsCategory:Product[]|string|null;
+  setSearchItemsCategory:React.Dispatch<React.SetStateAction<Product[]|string|null>>;
+  openMobileMenu:boolean
+  setOpenMobileMenu:React.Dispatch<React.SetStateAction<boolean>>;
 }
