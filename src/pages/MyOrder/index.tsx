@@ -21,7 +21,7 @@ export default function MyOrder():JSX.Element {
         <Link to='/my-orders' className=" absolute left-5">
           <ChevronLeftIcon className=" cursor-pointer text-black h-6 w-6"/>
         </Link>
-        <h1 className=" text-center text-lg font-semibold">My Order</h1>
+        <h1 className=" text-center text-lg font-semibold">Carrito</h1>
       </div>
       <div className="w-96 bg-gray-200 p-3 rounded-lg">
       {
@@ -38,6 +38,15 @@ export default function MyOrder():JSX.Element {
         
       }
       </div>
+      {
+        context.checkoutCart === true
+        ?<Link to='/'>
+            <button 
+            className=" w-56 bg-black py-3 text-white rounded-lg" 
+            onClick={()=>{ context.msgVisible()}}>Comprar</button>
+          </Link>
+        :""
+      }
     </Layout>
   )
 }
