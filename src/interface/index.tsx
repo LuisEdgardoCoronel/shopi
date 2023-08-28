@@ -83,9 +83,13 @@ export interface ShoppingCartContextType {
   searchTitleItems:Product[]|string|null;
   setSearchTitleItems:React.Dispatch<React.SetStateAction<Product[]|string|null>>;
   filteredItemsByTitle: (items: Product[], searchTitleItems: string) => Product[];
-  filteredItems:Product[];
+  filteredItems:Product[]| undefined;
   searchItemsCategory:Product[]|string|null;
   setSearchItemsCategory:React.Dispatch<React.SetStateAction<Product[]|string|null>>;
   openMobileMenu:boolean
   setOpenMobileMenu:React.Dispatch<React.SetStateAction<boolean>>;
+  checkoutCart:boolean
+  setCheckoutCart:React.Dispatch<React.SetStateAction<boolean>>;
+  successfulPurchase:boolean 
+  msgVisible: () => void
 }
