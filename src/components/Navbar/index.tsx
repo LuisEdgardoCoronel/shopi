@@ -43,7 +43,7 @@ export default function Navbar():JSX.Element {
           className={({ isActive}) =>
           isActive ? activeStyle : noActiveStyle
           }>
-            All
+            Todo
           </NavLink>
         </li>
         <li>
@@ -53,7 +53,7 @@ export default function Navbar():JSX.Element {
           className={({ isActive}) =>
           isActive ? activeStyle : noActiveStyle
           }>
-            Clothes
+            Ropa
           </NavLink>
         </li>
         <li>
@@ -63,7 +63,7 @@ export default function Navbar():JSX.Element {
           className={({ isActive}) =>
           isActive ? activeStyle : noActiveStyle
           }>
-            Electronic
+            Electrodomesticos
           </NavLink>
         </li>
         <li>
@@ -73,7 +73,7 @@ export default function Navbar():JSX.Element {
           className={({ isActive}) =>
             isActive ? activeStyle : noActiveStyle
           }>
-            Furnitures
+            Muebles
           </NavLink>
         </li>
         <li>
@@ -83,7 +83,7 @@ export default function Navbar():JSX.Element {
           className={({ isActive}) =>
           isActive ? activeStyle : noActiveStyle
           }>
-            Toys
+            Juguetes
           </NavLink>
         </li>
         <li>
@@ -93,7 +93,7 @@ export default function Navbar():JSX.Element {
           className={({ isActive}) =>
           isActive ? activeStyle : noActiveStyle
           }>
-            Others
+            Otros
           </NavLink>
         </li>
       </ul>
@@ -107,15 +107,12 @@ export default function Navbar():JSX.Element {
 
       <ul className='flex items-center gap-3 max-lg:hidden'>
         <li>
-          <UserCircleIcon className='text-gray-400 w-6 cursor-pointer'/>
-        </li>
-        <li>
           <NavLink 
           to={'/my-orders'} 
           className={({ isActive}) =>
             isActive ? "underline text-red-600" : ""
           }>
-            My Orders
+            Mis compras
           </NavLink>
         </li>
         <li>
@@ -124,7 +121,7 @@ export default function Navbar():JSX.Element {
           className={({ isActive}) =>
             isActive ? "underline text-red-600" : ""
           }>
-            My Account
+            <UserCircleIcon className='text-gray-400 w-6 cursor-pointer'/>
           </NavLink>
         </li>
         <li>
@@ -133,7 +130,7 @@ export default function Navbar():JSX.Element {
           className={({ isActive}) =>
             isActive ? "underline text-red-600" : ""
           }>
-            Sign In
+            Iniciar sesión
           </NavLink>
         </li>
         <li onClick={context.OpenCheckoutSideMenu} className=' cursor-pointer'>

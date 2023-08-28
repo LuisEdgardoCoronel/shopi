@@ -15,7 +15,7 @@ function getRandomStringFromArray(strings: string[]): string | undefined {
 }
 
 
-const categories = ['Clothes', 'Electronic', 'Furnitures', 'Toys', 'Others'];
+const categories = ['Ropa', 'Electrodomesticos', 'Muebles', 'Juguetes', 'Otros'];
 
 
 

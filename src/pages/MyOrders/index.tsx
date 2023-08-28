@@ -14,7 +14,7 @@ export default function MyOrders():JSX.Element {
   return (
     <Layout>
       <div className=" w-full relative">
-        <h1 className=" text-center text-lg font-semibold">My Orders</h1>
+        <h1 className=" text-center text-lg font-semibold">Mis Compras</h1>
       </div>
       {
         context.order.map((order, index)=>{
