@@ -57,9 +57,15 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
 
   const [order, setOrder]=useState<Partial<Order>[]>([])
 
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth() + 1; // Months in JavaScript are 0-indexed, so we add 1
+  const day = currentDate.getDate();
+  const formattedDate = `${day}/${month}/${year}`;
+
   const handleCheckout = () =>{
     const orderToAdd ={
-      date:'01.02.23',
+      date:formattedDate,
       products:cartProduct,
       totalProducts:totalCart,
       totalPriceCart: totalPrice
@@ -100,7 +106,7 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
     //   .then(data => setItems(data))
       
     // },[])
-    const [filteredItems, setFilteredItems] = useState<Product[]>(fakeProducts)
+    const [filteredItems, setFilteredItems] = useState<Product[]| undefined>(fakeProducts)
     const [searchTitleItems, setSearchTitleItems] = useState<Product[]|string|null>(null)
     const filteredItemsByTitle: (items: Product[], searchTitleItems: string) => Product[] = ( items:Product[], searchTitleItems:string )=>{
       return items?.filter(item => item.title.toLowerCase().includes(searchTitleItems.toLowerCase()))
@@ -144,6 +150,22 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
 
 
 
+    //button in my-order
+    const[checkoutCart, setCheckoutCart] = useState<boolean>(false)
+
+
+
+    
+    //button in my-order. view modal
+    const[successfulPurchase, setSuccessfulPurchase] = useState<boolean>(false)
+    const msgVisible: () => void = ()=>{
+      setSuccessfulPurchase(true)
+      setTimeout(()=>{ 
+        setSuccessfulPurchase(false);
+      },1500)
+      setCheckoutCart(false)
+    }
+
 
 
 
@@ -183,6 +205,10 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
       setSearchItemsCategory,
       openMobileMenu,
       setOpenMobileMenu,
+      checkoutCart, 
+      setCheckoutCart,
+      successfulPurchase, 
+      msgVisible
     }}>
       {children}
     </ShoppingCartContext.Provider>
