@@ -20,7 +20,7 @@ export const CheckoutSideMenu=():JSX.Element => {
     className={`${context.isCheckoutSideMenuOpen?'flex' : 'hidden'} flex-col fixed box-border right-0 bg-white border border-black rounded-lg w-p.d max-h-p.d top-p.d`}
     >
       <div className="flex justify-between items-center p-6 bg-gray-100 rounded-t-lg">
-        <h2 className="font-medium text-lg">My order</h2>
+        <h2 className="font-medium text-lg">Mi Carrito</h2>
         <div >
           <XCircleIcon 
           className=" w-7 cursor-pointer text-red-600 "
@@ -56,7 +56,10 @@ export const CheckoutSideMenu=():JSX.Element => {
           </p>
         </div>
         <Link to='/my-orders/last'>
-          <button className=" w-full bg-black py-3 text-white rounded-lg" onClick={()=>context.handleCheckout()}>Checkout</button>
+          <button 
+          className=" w-full bg-black py-3 text-white rounded-lg" 
+          onClick={()=>{context.handleCheckout()
+          context.setCheckoutCart(true)}}>Comprar</button>
         </Link>
       </div>
     </aside>
