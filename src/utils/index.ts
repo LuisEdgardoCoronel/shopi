@@ -6,10 +6,10 @@ import { Product } from '../interface';
 
 
 
-function getRandomStringFromArray(strings: string[]): string | undefined {
-  if (strings.length === 0) {
-    return undefined; // Retorna undefined si el array está vacío
-  }
+function getRandomStringFromArray(strings: string[]): string {
+  // if (strings.length === 0) {
+  //   return undefined; // Retorna undefined si el array está vacío
+  // }
   const randomIndex = Math.floor(Math.random() * strings.length);
   return strings[randomIndex];
 }

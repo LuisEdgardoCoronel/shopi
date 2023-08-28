@@ -30,7 +30,7 @@ export interface Cards {
 
 export interface Order {
   date: string;
-  products: Partial<Cards>[];
+  products?: Partial<Cards>[];
   totalProducts: number;
   totalPriceCart: number;
 }
@@ -81,11 +81,11 @@ export interface ShoppingCartContextType {
   items:Product[];
   setItems:React.Dispatch<React.SetStateAction<Product[]>>;
   searchTitleItems:Product[]|string|null;
-  setSearchTitleItems:React.Dispatch<React.SetStateAction<Product[]|string|null>>;
+  setSearchTitleItems:React.Dispatch<React.SetStateAction<Product[]|string>>;
   filteredItemsByTitle: (items: Product[], searchTitleItems: string) => Product[];
   filteredItems:Product[]| undefined;
   searchItemsCategory:Product[]|string|null;
-  setSearchItemsCategory:React.Dispatch<React.SetStateAction<Product[]|string|null>>;
+  setSearchItemsCategory:React.Dispatch<React.SetStateAction<Product[]|string>>;
   openMobileMenu:boolean
   setOpenMobileMenu:React.Dispatch<React.SetStateAction<boolean>>;
   checkoutCart:boolean

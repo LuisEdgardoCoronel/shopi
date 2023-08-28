@@ -10,10 +10,11 @@ export default function MyOrder():JSX.Element {
 
   const context = useContext(ShoppingCartContext ) as ShoppingCartContextType
   const currentPath = window.location.pathname
-  let index:number|string = currentPath.slice(currentPath.lastIndexOf('/')+1)
-  if (index === 'last') {
-    index = context.order?.length -1
-  }
+  let index: number = parseInt(currentPath.slice(currentPath.lastIndexOf('/') + 1));
+if (isNaN(index) || index >= context.order?.length) {
+  index = context.order?.length - 1;
+}
+
   
   return (
     <Layout>
@@ -25,18 +26,18 @@ export default function MyOrder():JSX.Element {
       </div>
       <div className="w-96 bg-gray-200 p-3 rounded-lg">
       {
-        context.order && context.order.length > 0 ? 		 
-        context.order[index].products.map(product =>{
-          return <OrderCard
-          title={product.title}
-          image={product.image}
-          price={product.price}
-          id={product.id}
-          handleDelete={false}
-          />
-        }):""
-        
+        context.order?.length > 0 &&
+          context.order[index]?.products?.map((product) => (
+            <OrderCard
+              title={product.title}
+              image={product.image}
+              price={product.price}
+              id={product.id}
+              handleDelete={false}
+            />
+          ))
       }
+
       </div>
       {
         context.checkoutCart === true

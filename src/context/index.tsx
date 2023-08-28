@@ -73,7 +73,7 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
     setOrder([...order, orderToAdd])
     setCartProduct([]);
     CloseCheckoutSideMenu()
-    setSearchTitleItems(null)
+    setSearchTitleItems('')
   }
 
 
@@ -107,35 +107,49 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
       
     // },[])
     const [filteredItems, setFilteredItems] = useState<Product[]| undefined>(fakeProducts)
-    const [searchTitleItems, setSearchTitleItems] = useState<Product[]|string|null>(null)
-    const filteredItemsByTitle: (items: Product[], searchTitleItems: string) => Product[] = ( items:Product[], searchTitleItems:string )=>{
-      return items?.filter(item => item.title.toLowerCase().includes(searchTitleItems.toLowerCase()))
-    }
+    const [searchTitleItems, setSearchTitleItems] = useState<Product[]|string>('')
+    const filteredItemsByTitle = (items: Product[], searchTitleItems: string | Product[]): Product[] => {
+      const searchTitleString = typeof searchTitleItems === 'string' ? searchTitleItems : '';
+    
+      return items?.filter(item => item.title.toLowerCase().includes(searchTitleString.toLowerCase()));
+    };
+    
     // useEffect(()=>{
     //   if (searchTitleItems)  setFilteredItems(filteredItemsByTitle(items,searchTitleItems))
       
     // },[items,searchTitleItems])
 
-    const [searchItemsCategory, setSearchItemsCategory] = useState<Product[]|string|null>(null)
+    const [searchItemsCategory, setSearchItemsCategory] = useState<Product[]|string>('')
     
-    const filteredItemsByCategory: (items: Product[], searchCategoryItems: string) => Product[] = ( items:Product[], searchCategoryItems:string )=>{
-      return items?.filter(item => item.category.name.toLowerCase().includes(searchCategoryItems.toLowerCase()))
-    }
-
-    const filterBy=(searchType:string|null,items:Product[], searchTitleItems:string, searchItemsCategory:string)=>{
+    const filteredItemsByCategory = (items: Product[], searchCategoryItems: string | Product[]): Product[] => {
+      const searchCategoryString = typeof searchCategoryItems === 'string' ? searchCategoryItems : '';
+      return items?.filter(item => item.category.name.toLowerCase().includes(searchCategoryString.toLowerCase()));
+    };
+    
+    
+    useEffect(()=>{
+    const filterBy=(searchType:string|null,items:Product[], searchTitleItems:string | Product[], searchItemsCategory:string| Product[])=>{
       if (searchType === 'BY_TITLE')return filteredItemsByTitle(items, searchTitleItems)
       if (searchType === 'BY_CATEGORY') return filteredItemsByCategory(items, searchItemsCategory)
-      if (searchType === 'BY_TITLE_AND_CATEGORY') return filteredItemsByCategory(items, searchItemsCategory).filter(item => item.title.toLowerCase().includes(searchTitleItems.toLowerCase()))
+      if (searchType === 'BY_TITLE_AND_CATEGORY') {
+        const filteredByCategory = filteredItemsByCategory(items, searchItemsCategory);
+        return filteredByCategory.filter(item => {
+          if (typeof searchTitleItems === 'string') {
+            return item.title.toLowerCase().includes(searchTitleItems.toLowerCase());
+          }
+          return false;
+        });
+      }
+      
       if (!searchType) return items
     }
 
-    useEffect(()=>{
       if (searchTitleItems && searchItemsCategory)  setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY',items,searchTitleItems,searchItemsCategory))
       if (searchTitleItems && !searchItemsCategory)  setFilteredItems(filterBy('BY_TITLE',items,searchTitleItems,searchItemsCategory))
       if (searchItemsCategory && !searchTitleItems )  setFilteredItems(filterBy('BY_CATEGORY',items,searchTitleItems,searchItemsCategory))
       if (!searchItemsCategory && !searchTitleItems )  setFilteredItems(filterBy(null,items,searchTitleItems,searchItemsCategory))
       // return()=>setSearchTitleItems(null)
-    },[items,searchTitleItems,searchItemsCategory])
+    },[items, searchTitleItems, searchItemsCategory])
 
 
 

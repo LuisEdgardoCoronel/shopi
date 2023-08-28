@@ -19,7 +19,7 @@ export default function Home():JSX.Element {
 
 
   const renderView = ()=>{
-      if (context.filteredItems?.length > 0) {
+      if (context.filteredItems && context.filteredItems.length > 0 ) {
         return(
           context.filteredItems?.map((item) => (<Card 
             key={item.id} 

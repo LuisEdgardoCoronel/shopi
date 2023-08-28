@@ -17,16 +17,20 @@ export default function MyOrders():JSX.Element {
         <h1 className=" text-center text-lg font-semibold">Mis Compras</h1>
       </div>
       {
-        context.order.map((order, index)=>{
-        return <Link key={index} to={`/my-orders/${index}`}>
-                  <OrdersCard 
-                  totalPriceCart={order.totalPriceCart}
-                  totalProducts={order.totalProducts}
-                  date={order.date}
-                  // products={order.products}
-                  />
-                </Link>
-        })}
+  context.order && context.order.length > 0 ? (
+    context.order.map((order, index) => (
+      <Link key={index} to={`/my-orders/${index}`}>
+        <OrdersCard
+          totalPriceCart={order.totalPriceCart ||0}
+          totalProducts={order.totalProducts ||0}
+          date={order.date || ''}
+        />
+      </Link>
+    ))
+  ) : (
+    <p>No hay órdenes disponibles.</p>
+  )
+}
     </Layout>
   )
 }

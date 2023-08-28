@@ -23,7 +23,7 @@ export const OrderCard:React.FC<OrderCards>  = ({id,price, title, image, handleD
           handleDelete &&
         <XCircleIcon 
           className=" w-7 cursor-pointer text-red-600 "
-          onClick={()=>context.handleDelete(id)}
+          onClick={()=>{if(id !==undefined) context.handleDelete(id)}}
           />
         }
       </div>
