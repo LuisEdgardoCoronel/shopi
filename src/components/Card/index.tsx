@@ -38,7 +38,7 @@ const Card:React.FC<Cards> = ({price, title, image, category, description, id}) 
 
   return (
     <div 
-      className="bg-white cursor-pointer w-56 h-60 rounded-lg shadow-md max-sm:w-48 " 
+      className="bg-white cursor-pointer w-56 h-60 rounded-lg shadow-md max-sm:w-48 transform hover:scale-105" 
       onClick={()=>context.showProduct(price, title, image, category,description)}
     >
       <figure className="relative mb-2 w-full h-4/5 max-sm:h-3/4">
