@@ -129,8 +129,8 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
     
     useEffect(()=>{
     const filterBy=(searchType:string|null,items:Product[], searchTitleItems:string | Product[], searchItemsCategory:string| Product[])=>{
-      if (searchType === 'BY_TITLE')return filteredItemsByTitle(items, searchTitleItems)
-      if (searchType === 'BY_CATEGORY') return filteredItemsByCategory(items, searchItemsCategory)
+      if (searchType === 'BY_TITLE'){return filteredItemsByTitle(items, searchTitleItems)}
+      if (searchType === 'BY_CATEGORY') {return filteredItemsByCategory(items, searchItemsCategory)}
       if (searchType === 'BY_TITLE_AND_CATEGORY') {
         const filteredByCategory = filteredItemsByCategory(items, searchItemsCategory);
         return filteredByCategory.filter(item => {
@@ -141,9 +141,9 @@ export const ShoppingCartProvider:React.FC<PropsType> = ({children})=>{
         });
       }
       
-      if (!searchType) return items
+      if (!searchType) {return items}
     }
-
+    
       if (searchTitleItems && searchItemsCategory)  setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY',items,searchTitleItems,searchItemsCategory))
       if (searchTitleItems && !searchItemsCategory)  setFilteredItems(filterBy('BY_TITLE',items,searchTitleItems,searchItemsCategory))
       if (searchItemsCategory && !searchTitleItems )  setFilteredItems(filterBy('BY_CATEGORY',items,searchTitleItems,searchItemsCategory))
